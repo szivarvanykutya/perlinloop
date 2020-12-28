@@ -1,0 +1,33 @@
+
+float noisemax=1.2;
+float phase = 0;
+void setup()
+{
+size (800,600);
+//noSmooth();
+background(0);
+frameRate(24);
+
+//noLoop();
+
+}
+
+void draw(){
+  background(0);
+  stroke(255);
+  translate(width/2,height/2);
+  beginShape();
+  for (float a=0; a<TWO_PI; a=a+0.1){
+    float xoff=map(cos(a+phase),-1,1,0,noisemax);
+    float yoff=map(sin(a+phase),-1,1,0,noisemax);
+    float r = map(noise(xoff,yoff),0,1,100,200);
+    float x = r*cos(a)+noise(phase/2)*100;
+    float y = r*sin(a)+noise(phase+10)*100;
+    vertex(x,y);
+  
+  }
+  endShape(CLOSE);  
+  phase = phase + 0.007;
+    
+  }
+  
